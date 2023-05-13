@@ -1,12 +1,12 @@
 # aws-lambda-emailsender
 
-AWS doesn't support Kotlin directly but it does support a jar-file containing Java8-bytecode.
+AWS doesn't support Kotlin directly, but it does support a jar-file containing Java-bytecode.
 So this Kotlin project is configured to produce just that.
 
 This Lambda allows to send emails to receivers only known by a token to the sender.
 This is for example useful to allow a (potentially Cross-Origin) website to
 send emails to the website's maintainer via a POST-request to the API Gateway
-without leaking their email address to people tech-savy enough to inspect the
+without leaking their email address to people tech-savvy enough to inspect the
 sourcecode of the website.
 
 ### Environment Variables that must be set:
@@ -18,4 +18,4 @@ sourcecode of the website.
 + `subject`: String - the subject of the email to send
 + `message`: String - the message of the email to send
 + `senderEmail`: String? - the (optional) email address of the sender
-+ `receiverName`: String - must be a key in the map defined by `receiver_email_by_name_csv`. The email will be send to the email address linked to that name.
++ `receiverName`: String - must be a key in the map defined by `receiver_email_by_name_csv`. The email will be sent to the email address linked to that name.

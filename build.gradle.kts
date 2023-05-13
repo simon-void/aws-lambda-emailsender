@@ -1,32 +1,25 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-	kotlin("jvm") version "1.6.10"
-	java
+	kotlin("jvm") version "1.8.21"
 	id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "de.gmx.simonvoid"
-java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
 }
 
+kotlin {
+	// uses org.gradle.java.installations.auto-download=false in gradle.properties to disable auto provisioning of JDK
+	jvmToolchain(17)
+}
+
 dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("com.amazonaws:aws-lambda-java-core:1.2.1")
-	implementation("com.amazonaws:aws-java-sdk-ses:1.12.150")
+	implementation("com.amazonaws:aws-lambda-java-core:1.2.2")
+	implementation("com.amazonaws:aws-java-sdk-ses:1.12.468")
 }
 
 tasks {
-	withType<KotlinCompile> {
-		kotlinOptions {
-			freeCompilerArgs = listOf("-Xjsr305=strict")
-			jvmTarget = "11"
-		}
-	}
-
 	"build" {
 		dependsOn(shadowJar)
 	}
